@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+*.db-shm
+/TripPlanner.Api/.vs/TripPlanner.Api/CopilotIndices/17.14.995.13737/CodeChunks.db-wal
+/TripPlanner.Api/.vs/TripPlanner.Api/CopilotIndices/17.14.995.13737/SemanticSymbols.db-wal
