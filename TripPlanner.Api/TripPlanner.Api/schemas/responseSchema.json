@@ -2,104 +2,139 @@
   "type": "object",
   "title": "TripItinerary",
   "properties": {
-    "trip_id": { "type": "string", "description": "UUID for this generated plan" },
+    "trip_id": {
+      "type": "string",
+      "description": "UUID for this generated plan"
+    },
     "user_profile": {
       "type": "object",
       "properties": {
-        "origin": {"type":"string"},
-        "destination": {"type":"string"},
-        "start_date": {"type":"string", "format":"date"},
-        "end_date": {"type":"string", "format":"date"},
-        "budget": {"type":"number"},
-        "currency": {"type":"string"},
+        "origin": { "type": "string" },
+        "destination": { "type": "string" },
+        "start_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "budget": { "type": "number" },
+        "currency": { "type": "string" },
         "interests": {
-          "type":"array",
-          "items":{"type":"string","enum":["heritage","nightlife","adventure","food","relaxation","shopping","nature","family"]}
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [ "heritage", "nightlife", "adventure", "food", "relaxation", "shopping", "nature", "family" ]
+          }
         },
-        "party_size": {"type":"integer","minimum":1}
+        "party_size": {
+          "type": "integer",
+          "minimum": 1
+        }
       },
-      "required":["destination","start_date","end_date"]
+      "required": [ "destination", "start_date", "end_date" ]
     },
-    "summary": {"type":"string"},
-    "total_estimated_cost": {"type":"number"},
-    "currency": {"type":"string"},
+    "summary": { "type": "string" },
+    "total_estimated_cost": { "type": "number" },
+    "currency": { "type": "string" },
     "days": {
-      "type":"array",
+      "type": "array",
       "items": {
-        "type":"object",
+        "type": "object",
         "properties": {
-          "day_index": {"type":"integer", "minimum":1},
-          "date": {"type":"string","format":"date"},
+          "day_index": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
           "slots": {
-            "type":"array",
+            "type": "array",
             "items": {
-              "type":"object",
+              "type": "object",
               "properties": {
-                "slot_id": {"type":"string"},
-                "start_time": {"type":"string","pattern":"^([01]\\d|2[0-3]):([0-5]\\d)$"},
-                "end_time": {"type":"string","pattern":"^([01]\\d|2[0-3]):([0-5]\\d)$"},
-                "activity_type": {"type":"string","enum":["travel","sightseeing","meal","checkin","checkout","free_time","experience","transfer"]},
-                "title": {"type":"string"},
-                "description": {"type":"string"},
+                "slot_id": { "type": "string" },
+                "start_time": {
+                  "type": "string",
+                  "pattern": "^([01]\\d|2[0-3]):([0-5]\\d)$"
+                },
+                "end_time": {
+                  "type": "string",
+                  "pattern": "^([01]\\d|2[0-3]):([0-5]\\d)$"
+                },
+                "activity_type": {
+                  "type": "string",
+                  "enum": [ "travel", "sightseeing", "meal", "checkin", "checkout", "free_time", "experience", "transfer" ]
+                },
+                "title": { "type": "string" },
+                "description": { "type": "string" },
                 "place": {
-                  "type":"object",
+                  "type": "object",
                   "properties": {
-                    "place_id": {"type":"string"},
-                    "name": {"type":"string"},
-                    "address": {"type":"string"},
-                    "lat": {"type":"number"},
-                    "lng": {"type":"number"},
-                    "source": {"type":"string"}
+                    "place_id": { "type": "string" },
+                    "name": { "type": "string" },
+                    "address": { "type": "string" },
+                    "lat": { "type": "number" },
+                    "lng": { "type": "number" },
+                    "source": { "type": "string" }
                   }
                 },
-                "estimated_cost": {"type":"number"},
-                "bookable": {"type":"boolean"},
-                "booking_hint": {"type":"string"},
-                "booking_action": {"type":"object",
+                "estimated_cost": { "type": "number" },
+                "bookable": { "type": "boolean" },
+                "booking_hint": { "type": "string" },
+                "booking_action": {
+                  "type": "object",
                   "properties": {
-                    "provider": {"type":"string"},
-                    "action": {"type":"string"},
-                    "params": {"type":"object"}
+                    "provider": { "type": "string" },
+                    "action": { "type": "string" },
+                    "params": { "type": "object" }
                   }
                 },
-                "notes": {"type":"string"}
+                "notes": { "type": "string" }
               },
-              "required":["slot_id","start_time","end_time","activity_type","title"]
+              "required": [ "slot_id", "start_time", "end_time", "activity_type", "title" ]
             }
-          ],
-          "day_estimated_cost": {"type":"number"}
-        },
-        "required":["day_index","date","slots"]
-      }
-    },
-    "alternatives": {
-      "type":"array",
-      "items":{
-        "type":"object",
-        "properties":{
-          "for_day": {"type":"integer"},
-          "reason": {"type":"string"},
-          "options": {
-            "type":"array",
-            "items":{"type":"string"}
+            ],
+            "day_estimated_cost": { "type": "number" }
+          },
+          "required": [ "day_index", "date", "slots" ]
+        }
+      },
+      "alternatives": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "for_day": { "type": "integer" },
+            "reason": { "type": "string" },
+            "options": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      },
+      "bookable_summary": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "item_id": { "type": "string" },
+            "type": { "type": "string" },
+            "provider": { "type": "string" },
+            "net_price": { "type": "number" },
+            "currency": { "type": "string" },
+            "hold_until": {
+              "type": "string",
+              "format": "date-time"
+            }
           }
         }
       }
     },
-    "bookable_summary": {
-      "type":"array",
-      "items":{
-        "type":"object",
-        "properties":{
-          "item_id":{"type":"string"},
-          "type":{"type":"string"},
-          "provider":{"type":"string"},
-          "net_price":{"type":"number"},
-          "currency":{"type":"string"},
-          "hold_until":{"type":"string","format":"date-time"}
-        }
-      }
-    }
-  },
-  "required":["trip_id","user_profile","days","summary","total_estimated_cost","currency"]
+    "required": [ "trip_id", "user_profile", "days", "summary", "total_estimated_cost", "currency" ]
+  }
 }
